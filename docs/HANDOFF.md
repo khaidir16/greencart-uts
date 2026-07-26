@@ -26,7 +26,7 @@ Smoke test terakhir berhasil untuk:
 
 Verifikasi lokal terakhir:
 
-- 73 API tests lulus;
+- 75 API tests lulus;
 - 9 Web component tests lulus;
 - TypeScript typecheck lulus;
 - production build lulus.

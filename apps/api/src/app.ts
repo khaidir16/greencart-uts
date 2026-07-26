@@ -20,6 +20,10 @@ import { createAdminOrderRouter, createOrderRouter } from './modules/order/order
 import swaggerUi from 'swagger-ui-express';
 import { openApiDocument } from './docs/openapi.js';
 
+const swaggerHtml = swaggerUi
+  .generateHTML(openApiDocument, { customSiteTitle: 'GreenCart API Docs' })
+  .replace('<head>', '<head><base href="/api/docs/">');
+
 const defaultUsers = [
   { id: '30000000-0000-4000-8000-000000000001', email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', role: 'ADMIN' as const, passwordHash: '$2b$10$qNGodx8jDC0HiPWBXb60OeliF5/JUeUFpTWmN55dVwtMmGXMhWxmu' },
   { id: '30000000-0000-4000-8000-000000000002', email: 'customer@greencart.test', username: 'customer', name: 'Customer Demo', role: 'CUSTOMER' as const, passwordHash: '$2b$10$gyr42xjqP2H.Ywh/uIa17ub4t4a1ep3Y5RzQKp1dUFAy/2B9Umpxe' },
@@ -52,7 +56,11 @@ export function createApp(options?: {
 
   app.use('/api/health', healthRouter);
   app.get('/api/docs/openapi.json', (_request, response) => response.json(openApiDocument));
-  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument, { customSiteTitle: 'GreenCart API Docs' }));
+  app.get(['/api/docs', '/api/docs/'], (_request, response) => {
+    response.removeHeader('Content-Security-Policy');
+    return response.type('html').send(swaggerHtml);
+  });
+  app.use('/api/docs', swaggerUi.serve);
   app.use('/api/auth', createAuthRouter(authService));
   const adminGuards = options?.protectProductMutations
     ? [requireAuth(authService), requireRole('ADMIN')]

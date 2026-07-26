@@ -13,7 +13,7 @@ Target durasi: 5–7 menit.
 9. Buka dashboard dan daftar pesanan.
 10. Temukan nomor order, buka detail, dan ubah menjadi CONFIRMED.
 11. Buka `/api/docs` untuk menunjukkan kontrak OpenAPI.
-12. Tampilkan evidence: 73 API test, 9 Web test, 15 BDD scenario, dan Cypress E2E.
+12. Tampilkan evidence: 75 API test, 9 Web test, 15 BDD scenario, dan 9 Cypress E2E.
 
 Jika jaringan/deployment bermasalah, gunakan aplikasi lokal dan evidence video Cypress sebagai
 fallback demo.

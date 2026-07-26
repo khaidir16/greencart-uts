@@ -787,7 +787,7 @@ Empat belas product cases memenuhi butir minimum produk:
 | API-PROD-14 | Delete ID not found | 404 |
 
 Tambahan auth (8), cart (4), order (6), health (2), OpenAPI (2), dan domain tests menghasilkan total
-API test terakhir yang tercatat pada handoff sebanyak **73 test lulus**. Gunakan output eksekusi
+API test terbaru sebanyak **75 test lulus**. Gunakan output eksekusi
 terbaru sebagai angka final bila test dijalankan ulang.
 
 Order cases mencakup order DRAFT valid, cart kosong, recipient invalid, detail by number, valid/illegal
@@ -835,7 +835,7 @@ assertion atau jelaskan bahwa kontrak schema divalidasi melalui dokumen OpenAPI 
 
 ## 7.7 Hasil Eksekusi API
 
-Status handoff terakhir: 73 API tests lulus, 9 Web component tests lulus, typecheck dan production
+Status verifikasi terakhir: 75 API tests lulus, 9 Web component tests lulus, typecheck dan production
 build lulus. Evidence terpisah mencatat product 14/14, auth 8/8, advanced test design 39/39, serta
 commerce flow suite. Ambil satu screenshot output `npm test` terbaru sebelum membuat PPT final agar
 angka, timestamp, dan durasi konsisten.

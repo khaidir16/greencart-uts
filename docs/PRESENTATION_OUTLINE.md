@@ -43,7 +43,7 @@
 
 ## Slide 8 — Automation result
 
-- 73 API test dan 9 Web component test lulus.
+- 75 API test dan 9 Web component test lulus.
 - 9 Cypress E2E dengan empat Page Object lulus pada PostgreSQL nyata.
 - Typecheck, lint, BDD, dan build lulus.
 
