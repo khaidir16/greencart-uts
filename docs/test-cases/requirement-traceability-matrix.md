@@ -14,5 +14,10 @@
 | FR-21 | CONFIRMED menjadi COMPLETED | ST-ORD-03 | State transition |
 | FR-22 | DRAFT/CONFIRMED menjadi CANCELLED | ST-ORD-02, ST-ORD-04 | State transition |
 | FR-23 | Tolak transisi ilegal | ST-ORD-05–14, WB-STS-01, WB-STS-03 | State/white-box |
+| FR-10 | Tambah jumlah valid | BDD-CART: Add a valid quantity | BDD positif |
+| FR-14 | Boundary dan tipe jumlah | BDD-CART: text, fractional, boundaries | BDD negatif/boundary |
+| FR-16 | Stok saat checkout | BDD-CART: exceeding available stock | BDD negatif |
+| FR-20–FR-22 | Transisi status valid | BDD-ORDER: valid transitions outline | BDD Scenario Outline |
+| FR-23 | Status terminal dan unchanged | BDD-ORDER: tiga skenario penolakan | BDD negatif/status |
 
 Matrix akan diperluas ketika BDD, UI automation, dan API automation dibuat.

@@ -1,0 +1,839 @@
+[
+  {
+    "description": "  As a GreenCart customer\n  I want product quantities to follow purchasing rules\n  So that my cart can be processed safely",
+    "elements": [
+      {
+        "description": "",
+        "id": "cart-quantity-validation;add-a-valid-quantity-to-the-cart",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Add a valid quantity to the cart",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 661699
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 166200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "the customer validates quantity 5",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 187000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the quantity validation should succeed",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:41"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 204100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the accepted quantity should be 5",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:45"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;reject-quantity-written-as-text",
+        "keyword": "Scenario",
+        "line": 14,
+        "name": "Reject quantity written as text",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 76999
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 204399
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "the customer validates quantity \"two\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 290999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the quantity validation should fail with code \"QUANTITY_TYPE\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:50"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;reject-a-fractional-quantity",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Reject a fractional quantity",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 90500
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 225500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "the customer validates fractional quantity 1.5",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:30"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 101900
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "the quantity validation should fail with code \"QUANTITY_INTEGER\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:50"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;validate-quantity-boundaries",
+        "keyword": "Scenario Outline",
+        "line": 28,
+        "name": "Validate quantity boundaries",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 58099
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 23,
+            "name": "the customer validates quantity 1",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 107799
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the validation outcome should be \"valid\" with code \"NONE\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:58"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;validate-quantity-boundaries",
+        "keyword": "Scenario Outline",
+        "line": 29,
+        "name": "Validate quantity boundaries",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35500
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35900
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 23,
+            "name": "the customer validates quantity 10",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 45399
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the validation outcome should be \"valid\" with code \"NONE\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:58"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;validate-quantity-boundaries",
+        "keyword": "Scenario Outline",
+        "line": 30,
+        "name": "Validate quantity boundaries",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 41499
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 39800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 23,
+            "name": "the customer validates quantity 0",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 49500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the validation outcome should be \"invalid\" with code \"QUANTITY_MIN\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:58"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;validate-quantity-boundaries",
+        "keyword": "Scenario Outline",
+        "line": 31,
+        "name": "Validate quantity boundaries",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 26600
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 29300
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 23,
+            "name": "the customer validates quantity 11",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 42799
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the validation outcome should be \"invalid\" with code \"QUANTITY_MAX\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:58"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-quantity-validation;reject-quantity-exceeding-available-stock",
+        "keyword": "Scenario",
+        "line": 33,
+        "name": "Reject quantity exceeding available stock",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 25099
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "product stock is 10 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 23799
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 34,
+            "name": "product stock is 3 units",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:22"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 27100
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 35,
+            "name": "the customer validates quantity 4",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35200
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 36,
+            "name": "the quantity validation should fail with code \"QUANTITY_STOCK\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:50"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "cart-quantity-validation",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Cart quantity validation",
+    "tags": [],
+    "uri": "features\\cart-quantity.feature"
+  },
+  {
+    "description": "  As a GreenCart administrator\n  I want order status changes to follow the workflow\n  So that completed or cancelled orders cannot be reactivated",
+    "elements": [
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 116499
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"DRAFT\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 127500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 66100
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 14,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 36500
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"DRAFT\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 36400
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 29999
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 15,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31500
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 40799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 57700
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 16,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 33399
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 28699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;reject-cancellation-of-a-completed-order",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Reject cancellation of a completed order",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 33699
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 19,
+            "name": "an order currently has status \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 57799
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "the administrator changes the status to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 97800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "the order status transition should fail with code \"INVALID_STATUS_TRANSITION\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:92"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 184100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "the order should remain in status \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:100"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;reject-reactivation-of-a-cancelled-order",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "Reject reactivation of a cancelled order",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 87300
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 25,
+            "name": "an order currently has status \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 66599
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "the administrator changes the status to \"DRAFT\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 46400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the order status transition should fail with code \"INVALID_STATUS_TRANSITION\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:92"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 32400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the order should remain in status \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:100"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;reject-a-status-change-to-the-current-status",
+        "keyword": "Scenario",
+        "line": 30,
+        "name": "Reject a status change to the current status",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 32899
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 31,
+            "name": "an order currently has status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35499
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 32,
+            "name": "the administrator changes the status to \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 30500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 33,
+            "name": "the order status transition should fail with code \"STATUS_UNCHANGED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:92"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 28999
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "the order should remain in status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:100"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "order-status-transition",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Order status transition",
+    "tags": [],
+    "uri": "features\\order-status.feature"
+  }
+]
