@@ -22,7 +22,14 @@ import { openApiDocument } from './docs/openapi.js';
 
 const swaggerHtml = swaggerUi
   .generateHTML(openApiDocument, { customSiteTitle: 'GreenCart API Docs' })
-  .replace('<head>', '<head><base href="/api/docs/">');
+  .replace('./swagger-ui.css', 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.32.11/swagger-ui.css')
+  .replace('./swagger-ui-bundle.js', 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.32.11/swagger-ui-bundle.js')
+  .replace(
+    './swagger-ui-standalone-preset.js',
+    'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.32.11/swagger-ui-standalone-preset.js',
+  )
+  .replace('./favicon-32x32.png', 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.32.11/favicon-32x32.png')
+  .replace('./favicon-16x16.png', 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.32.11/favicon-16x16.png');
 
 const defaultUsers = [
   { id: '30000000-0000-4000-8000-000000000001', email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', role: 'ADMIN' as const, passwordHash: '$2b$10$qNGodx8jDC0HiPWBXb60OeliF5/JUeUFpTWmN55dVwtMmGXMhWxmu' },
@@ -60,7 +67,6 @@ export function createApp(options?: {
     response.removeHeader('Content-Security-Policy');
     return response.type('html').send(swaggerHtml);
   });
-  app.use('/api/docs', swaggerUi.serve);
   app.use('/api/auth', createAuthRouter(authService));
   const adminGuards = options?.protectProductMutations
     ? [requireAuth(authService), requireRole('ADMIN')]

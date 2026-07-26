@@ -20,7 +20,7 @@ describe('OpenAPI documentation', () => {
     expect(response.status).toBe(200);
     expect(response.text).toContain('id="swagger-ui"');
     expect(response.text).toContain('GreenCart API Docs');
-    expect(response.text).toContain('<base href="/api/docs/">');
+    expect(response.text).toContain('swagger-ui-dist@5.32.11/swagger-ui.css');
   });
 
   it('menyediakan Swagger UI tanpa redirect pada path tanpa trailing slash', async () => {
@@ -30,9 +30,9 @@ describe('OpenAPI documentation', () => {
     expect(response.text).toContain('id="swagger-ui"');
   });
 
-  it('menyediakan asset stylesheet Swagger UI', async () => {
-    const response = await request(app).get('/api/docs/swagger-ui.css');
-    expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toContain('text/css');
+  it('menggunakan asset Swagger UI berversi tetap untuk serverless production', async () => {
+    const response = await request(app).get('/api/docs');
+    expect(response.text).toContain('swagger-ui-dist@5.32.11/swagger-ui-bundle.js');
+    expect(response.text).toContain('swagger-ui-dist@5.32.11/swagger-ui-standalone-preset.js');
   });
 });
