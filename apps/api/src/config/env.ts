@@ -10,9 +10,21 @@ function readPort(value: string | undefined): number {
   return port;
 }
 
+const nodeEnv = process.env.NODE_ENV ?? 'development';
+const authSecret = process.env.AUTH_SECRET ?? 'development-only-greencart-secret-change-in-production';
+const webOrigin = process.env.WEB_ORIGIN ?? 'http://localhost:5173';
+
+if (nodeEnv === 'production' && authSecret.length < 32) {
+  throw new Error('AUTH_SECRET production wajib memiliki minimal 32 karakter.');
+}
+
+if (nodeEnv === 'production' && !process.env.WEB_ORIGIN) {
+  throw new Error('WEB_ORIGIN wajib tersedia pada environment production.');
+}
+
 export const env = {
-  nodeEnv: process.env.NODE_ENV ?? 'development',
+  nodeEnv,
   port: readPort(process.env.PORT),
-  webOrigin: process.env.WEB_ORIGIN ?? 'http://localhost:5173',
-  authSecret: process.env.AUTH_SECRET ?? 'development-only-greencart-secret-change-in-production',
+  webOrigin,
+  authSecret,
 } as const;

@@ -54,4 +54,9 @@ npm run e2e
 `npm run e2e` memerlukan Web pada port 5173 dan API pada port 3000. Jalankan `npm run dev` pada
 terminal terpisah sebelum Cypress headless, atau gunakan `npm run e2e:open` untuk mode interaktif.
 
+## Deployment
+
+Blueprint Render, konfigurasi Vercel, environment production, dan checklist smoke test dijelaskan
+pada [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
 Konfigurasi environment tersedia pada file `.env.example` di masing-masing aplikasi.

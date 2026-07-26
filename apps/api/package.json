@@ -15,6 +15,7 @@
     "db:generate": "prisma generate",
     "db:typecheck": "tsc --noEmit --target ES2023 --module NodeNext --moduleResolution NodeNext --skipLibCheck prisma/seed.ts prisma.config.ts",
     "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts"
   },
   "prisma": {
