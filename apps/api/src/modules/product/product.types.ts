@@ -28,6 +28,7 @@ export type ProductListOptions = {
   limit: number;
   search?: string;
   categoryId?: string;
+  category?: string;
   inStock?: boolean;
   sort: 'newest' | 'name-asc' | 'price-asc' | 'price-desc';
 };

@@ -17,6 +17,7 @@ export class PrismaProductRepository implements ProductRepository {
         ],
       }),
       ...(options.categoryId && { categoryId: options.categoryId }),
+      ...(options.category && { category: { slug: options.category } }),
       ...(options.inStock !== undefined && { stock: options.inStock ? { gt: 0 } : 0 }),
     };
     const [records, total] = await this.database.$transaction([

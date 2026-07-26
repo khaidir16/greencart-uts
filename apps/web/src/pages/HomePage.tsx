@@ -1,5 +1,6 @@
 import { ArrowRight, Box, Check, Droplets, Leaf, ShieldCheck, Sparkles, Star, Sun, Truck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { BotanicalExperience } from '../components/three/BotanicalExperience';
 import { Badge } from '../components/ui/Badge';
 import { ButtonLink } from '../components/ui/Button';
@@ -11,9 +12,9 @@ const highlights = [
 ];
 
 const categories = [
-  { name: 'Tanaman indoor', count: '38 koleksi', color: 'from-[#dcebd4] to-[#a9cf96]', icon: Leaf },
-  { name: 'Pot & wadah', count: '24 koleksi', color: 'from-[#f1dfd0] to-[#d7a183]', icon: Box },
-  { name: 'Perawatan', count: '31 koleksi', color: 'from-[#d7ece9] to-[#8fc6bd]', icon: Droplets },
+  { name: 'Tanaman indoor', count: '38 koleksi', color: 'from-[#dcebd4] to-[#a9cf96]', icon: Leaf, to: '/products?category=tanaman-indoor' },
+  { name: 'Pot & wadah', count: '24 koleksi', color: 'from-[#f1dfd0] to-[#d7a183]', icon: Box, to: '/products?category=pot-dan-wadah' },
+  { name: 'Perawatan', count: '31 koleksi', color: 'from-[#d7ece9] to-[#8fc6bd]', icon: Droplets, to: '/products?view=care' },
 ];
 
 const products = [
@@ -46,7 +47,7 @@ export function HomePage() {
 
       <section className="container-shell py-18 sm:py-24">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><p className="section-kicker">Jelajahi kategori</p><h2 className="section-title">Mulai dari ruang yang ingin kamu hidupkan.</h2></div><p className="max-w-2xl text-sm leading-7 text-slate-600 lg:justify-self-end">Koleksi terkurasi untuk meja kerja, ruang keluarga, balkon, hingga kebun pertamamu.</p></div>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">{categories.map(({ name, count, color, icon: Icon }, index) => <motion.article key={name} className={`category-card bg-gradient-to-br ${color}`} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }}><div className="category-glow" /><Icon size={28} className="relative text-forest-900" /><div className="relative mt-auto"><p className="font-display text-2xl font-semibold text-forest-950">{name}</p><p className="mt-1 text-xs font-semibold text-forest-800/65">{count}</p></div><ArrowRight className="relative ml-auto text-forest-900" /></motion.article>)}</div>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">{categories.map(({ name, count, color, icon: Icon, to }, index) => <motion.div key={name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }}><Link to={to} aria-label={`Jelajahi ${name}`} className={`category-card h-full bg-gradient-to-br ${color}`}><div className="category-glow" /><Icon size={28} className="relative text-forest-900" /><div className="relative mt-auto"><p className="font-display text-2xl font-semibold text-forest-950">{name}</p><p className="mt-1 text-xs font-semibold text-forest-800/65">{count}</p></div><ArrowRight className="relative ml-auto text-forest-900" /></Link></motion.div>)}</div>
       </section>
 
       <section className="bg-white py-18 sm:py-24">

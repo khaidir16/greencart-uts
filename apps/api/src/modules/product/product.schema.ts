@@ -36,6 +36,7 @@ export const productListQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(50).default(12),
   search: z.string().trim().max(100).optional(),
   categoryId: z.uuid('ID kategori tidak valid.').optional(),
+  category: z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug kategori tidak valid.').optional(),
   inStock: z.enum(['true', 'false']).transform((value) => value === 'true').optional(),
   sort: z.enum(['newest', 'name-asc', 'price-asc', 'price-desc']).default('newest'),
 });

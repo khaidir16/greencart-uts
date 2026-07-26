@@ -20,6 +20,7 @@ export class InMemoryProductRepository implements ProductRepository {
       );
     }
     if (options.categoryId) items = items.filter((product) => product.categoryId === options.categoryId);
+    if (options.category) items = items.filter((product) => slugify(product.categoryName ?? '') === options.category);
     if (options.inStock !== undefined) {
       items = items.filter((product) => (options.inStock ? product.stock > 0 : product.stock === 0));
     }
@@ -62,6 +63,10 @@ export class InMemoryProductRepository implements ProductRepository {
   async delete(id: string) {
     return this.products.delete(id);
   }
+}
+
+function slugify(value: string) {
+  return value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 function productSorter(sort: ProductListOptions['sort']) {
