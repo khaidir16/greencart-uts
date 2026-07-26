@@ -1,5 +1,13 @@
 export type OrderStatus = 'DRAFT' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED';
 
+export const VALID_ORDER_TRANSITIONS: Readonly<Record<OrderStatus, readonly OrderStatus[]>> =
+  Object.freeze({
+    DRAFT: ['CONFIRMED', 'CANCELLED'],
+    CONFIRMED: ['COMPLETED', 'CANCELLED'],
+    COMPLETED: [],
+    CANCELLED: [],
+  });
+
 export type OrderStatusTransitionResult =
   | { changed: true; from: OrderStatus; to: OrderStatus }
   | {
@@ -24,11 +32,7 @@ export function transitionOrderStatus(
     };
   }
 
-  if (current === 'DRAFT' && (target === 'CONFIRMED' || target === 'CANCELLED')) {
-    return { changed: true, from: current, to: target };
-  }
-
-  if (current === 'CONFIRMED' && (target === 'COMPLETED' || target === 'CANCELLED')) {
+  if (VALID_ORDER_TRANSITIONS[current].includes(target)) {
     return { changed: true, from: current, to: target };
   }
 
