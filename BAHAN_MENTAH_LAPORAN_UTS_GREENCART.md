@@ -660,7 +660,14 @@ Cypress 15.19, TypeScript, Electron 138 headless, React frontend, PostgreSQL 17 
 cypress/
   e2e/
     authentication.cy.ts
-    commerce-flow.cy.ts
+    products.cy.ts
+    cart.cy.ts
+    checkout.cy.ts
+  pages/
+    LoginPage.ts
+    ProductsPage.ts
+    CartPage.ts
+    CheckoutPage.ts
   support/
     e2e.ts
   tsconfig.json
@@ -669,20 +676,17 @@ cypress.config.ts
 
 ## 6.3 Penerapan Page Object Model
 
-**STATUS SAAT INI: BELUM MEMENUHI SOAL.** Test masih berisi selector/interaksi langsung dan belum
-memiliki Page Object terpisah. Sebelum laporan final, tambahkan minimal:
+Implementasi memenuhi empat Page Object minimal yang dipersyaratkan:
 
 ```text
 cypress/pages/LoginPage.ts
 cypress/pages/ProductsPage.ts
 cypress/pages/CartPage.ts
 cypress/pages/CheckoutPage.ts
-cypress/fixtures/users.json
-cypress/fixtures/checkout.json
 ```
 
-Page Object harus membungkus navigation, selector, dan action; assertion boleh ditempatkan pada test
-agar intent skenario jelas. Setelah dibuat, tampilkan struktur dan satu potongan class/object tiap page.
+Page Object membungkus navigasi, selector, action, dan assertion halaman yang dapat digunakan ulang.
+Test script hanya menyusun alur skenario sehingga selector tidak diduplikasi di setiap spec.
 
 ## 6.4 Data Pengujian
 
@@ -698,33 +702,33 @@ Jangan tampilkan credential production. Lebih baik simpan data terstruktur pada 
 
 ## 6.5 Skenario Pengujian UI
 
-Soal mewajibkan minimal delapan. Kondisi aktual dan target:
+Soal mewajibkan minimal delapan. Implementasi memiliki sembilan test mandiri:
 
 | ID | Skenario wajib | Status aktual |
 |---|---|---|
-| UI-01 | Login valid | Tercakup untuk Admin |
-| UI-02 | Login invalid | Tercakup |
-| UI-03 | Menampilkan daftar produk | Tercakup di commerce flow, perlu test mandiri |
-| UI-04 | Menambah produk ke cart | Tercakup di commerce flow, perlu test mandiri |
-| UI-05 | Mengubah quantity cart | Belum ada E2E |
-| UI-06 | Menghapus item cart | Belum ada E2E |
-| UI-07 | Checkout valid | Tercakup di commerce flow |
-| UI-08 | Checkout invalid/tidak lengkap | Belum ada E2E |
+| UI-01 | Login valid | Lulus |
+| UI-02 | Login invalid | Lulus |
+| UI-03 | Field login kosong | Lulus |
+| UI-04 | Menampilkan daftar dan mencari produk | Lulus |
+| UI-05 | Menambah produk ke cart | Lulus |
+| UI-06 | Mengubah quantity cart | Lulus |
+| UI-07 | Menghapus item cart | Lulus |
+| UI-08 | Checkout valid | Lulus |
+| UI-09 | Checkout invalid/tidak lengkap | Lulus |
 
-Tambahkan test mandiri sampai minimal 8, gunakan POM, fixture, assertion, data positif/negatif, reset
-database, dan pastikan repeatable.
+Setiap skenario memakai assertion. Setup cart menghapus item lama sehingga pengujian dapat dijalankan
+berulang pada database lokal yang sama.
 
 ## 6.6 Implementasi Otomatisasi UI Saat Ini
 
-Tiga test yang ada:
+Sembilan test dibagi dalam empat spec:
 
-1. Invalid credential menampilkan pesan umum.
-2. Login Admin mengarah ke dashboard.
-3. Full commerce flow: Customer login, pilih produk, add cart, checkout, Admin login, temukan order,
-   ubah DRAFT menjadi CONFIRMED.
+1. Authentication: invalid credential, field kosong, dan login Customer valid.
+2. Products: daftar produk dan pencarian.
+3. Cart: add, update quantity, dan delete.
+4. Checkout: data tidak valid ditolak dan data valid membuat pesanan.
 
-Full flow membuktikan integrasi frontend, API, auth, database, order, dan Admin. Namun, jangan
-menyebutnya delapan test karena hanya satu test case gabungan.
+Keempat Page Object memisahkan selector/action dari test script dan dipakai lintas spec.
 
 ## 6.7 Hasil Eksekusi UI
 
@@ -732,20 +736,19 @@ Evidence 26 Juli 2026:
 
 | Spec | Test | Hasil |
 |---|---|---|
-| authentication | password salah ditolak | Lulus |
-| authentication | Admin diarahkan ke dashboard | Lulus |
-| commerce-flow | checkout Customer lalu Admin confirm | Lulus |
+| authentication | 3 | 3 lulus |
+| products | 1 | 1 lulus |
+| cart | 3 | 3 lulus |
+| checkout | 2 | 2 lulus |
 
-Browser Electron 138 headless, database PostgreSQL 17 lokal. Video berada di `cypress/videos/` bila
-artefak lokal masih tersedia. Setelah penambahan 8 test+POM, jalankan ulang `npm run e2e`, simpan
-screenshot hasil akhir, dan perbarui angka pada bagian ini.
+Browser Electron 138 headless, database PostgreSQL 17 lokal. Total 9/9 lulus dalam 37 detik. Video
+empat spec berada di `cypress/videos/` bila artefak lokal masih tersedia.
 
 ## 6.8 Analisis Hasil UI
 
-Hasil aktual 3/3 lulus dan membuktikan alur end-to-end utama. Tidak ada kegagalan pada eksekusi final
-tercatat. Keterbatasannya adalah granularitas test, belum adanya POM, belum lengkapnya skenario
-quantity/delete/invalid checkout, dan baru satu browser. Karena itu bagian UI belum boleh dinyatakan
-sepenuhnya memenuhi ketentuan UTS sampai gap ditutup.
+Hasil aktual 9/9 lulus dan memenuhi jumlah minimum, cakupan skenario wajib, assertion, positive dan
+negative case, repeatability, serta empat Page Object. Keterbatasan yang tersisa adalah eksekusi baru
+menggunakan Electron headless dan belum mencakup cross-browser/device farm.
 
 ---
 
@@ -898,7 +901,7 @@ wajib ditinjau ulang.
 
 ## 8.7 Keterbatasan Pengujian
 
-- UI automation baru 3 test dan belum POM; harus diperbaiki untuk memenuhi soal.
+- UI automation mencakup 9 test dan empat Page Object; cross-browser matrix belum dilakukan.
 - Belum ada cross-browser matrix, device farm, visual regression, accessibility audit otomatis,
   load/stress test, penetration test, chaos/recovery test, dan soak test.
 - Database integration memakai local PostgreSQL untuk smoke/E2E, sementara mayoritas API suite memakai
@@ -925,9 +928,9 @@ dan 50 step lulus. API automation melampaui minimum kasus dan membuktikan respon
 autentikasi, validasi, stok, serta transisi. Satu defect update kosong ditemukan, diperbaiki, dan
 ditutup setelah retest.
 
-Kesimpulan harus tetap menyebut bahwa kepatuhan UI automation belum final sampai minimal delapan test
-dan Page Object Model selesai. Setelah gap tersebut ditutup dan evidence diperbarui, proyek dapat
-dinyatakan memenuhi seluruh ketentuan teknis UTS.
+UI automation telah memenuhi jumlah minimum dengan 9 test dan empat Page Object. Evidence eksekusi
+menunjukkan seluruh spec lulus; keterbatasan yang tetap perlu disebut adalah belum adanya pengujian
+lintas browser dan device farm.
 
 ## 9.2 Rekomendasi Pengembangan
 
@@ -989,7 +992,7 @@ dan pemeriksaan hasil akhir.”
 - [ ] Unit test dan coverage advanced test design.
 - [ ] TDD Red, Green, Refactor beserta kode sebelum/sesudah.
 - [ ] Dua feature Gherkin, step definition, hasil 15 scenario/50 step.
-- [ ] Struktur Cypress POM (setelah dibuat), 8 test, hasil eksekusi/video.
+- [ ] Struktur empat Cypress Page Object, 9 test, hasil eksekusi/video.
 - [ ] Source Supertest, tabel minimal 12 API test, hasil eksekusi.
 - [ ] Swagger UI dan response API.
 - [ ] Defect before/fix/retest.
@@ -1000,14 +1003,13 @@ dan pemeriksaan hasil akhir.”
 
 ## 12. GAP WAJIB SEBELUM DIKUMPULKAN
 
-1. **UI automation:** buat minimal 8 test dan Page Object Model untuk Login, Products, Cart, Checkout.
-2. Jalankan ulang seluruh quality gate dan ambil screenshot output final yang konsisten.
-3. Pastikan JSON Schema validation API ditunjukkan secara faktual, bukan sekadar diklaim.
-4. Rotasi credential Neon/token yang pernah terekspos lalu redeploy dan smoke test.
-5. Isi kelas, dosen, nama kelompok, serta identitas individu pada nama file.
-6. Ambil semua screenshot aplikasi dan kode yang diwajibkan soal.
-7. Buat PPT/PPTX, bukan hanya laporan Word/PDF; kumpulkan bersama ZIP source code.
-8. Pastikan URL production/repository dapat dibuka dosen tanpa login khusus.
+1. Ambil screenshot output quality gate dan Cypress final yang konsisten.
+2. Pastikan JSON Schema validation API ditunjukkan secara faktual, bukan sekadar diklaim.
+3. Rotasi credential Neon/token yang pernah terekspos lalu redeploy dan smoke test.
+4. Isi kelas, dosen, nama kelompok, serta identitas individu pada nama file.
+5. Ambil semua screenshot aplikasi dan kode yang diwajibkan soal.
+6. Buat PPT/PPTX, bukan hanya laporan Word/PDF; kumpulkan bersama ZIP source code.
+7. Pastikan URL production/repository dapat dibuka dosen tanpa login khusus.
 
 ---
 
@@ -1024,8 +1026,8 @@ Jangan meringkas dengan menghilangkan subbagian wajib. Buat slide yang cukup ban
 diagram, kode, dan hasil test terbaca. Setiap pembahasan teknis harus memiliki placeholder bukti dengan
 nama screenshot/file sumber. Gunakan bahasa Indonesia akademik yang jelas, jangan mengarang data,
 jumlah test, coverage, atau hasil eksekusi. Jangan tampilkan token, password production, DATABASE_URL,
-atau isi .env. Tandai fakta yang belum lengkap sebagai TODO, khususnya POM dan minimal 8 Cypress test,
-dan jangan menyatakan bagian tersebut memenuhi soal sampai buktinya diberikan.
+atau isi .env. Otomatisasi UI telah memiliki 9 Cypress test dan empat Page Object; gunakan hasil
+tersebut secara akurat dan jangan mengubah jumlahnya.
 
 Gunakan desain botanical commerce profesional dengan rasio 16:9, warna hijau/krem, kontras tinggi,
 caption gambar/tabel, nomor BAB, serta URL website, API, Swagger, dan repository. Karena tugas tidak
@@ -1033,4 +1035,3 @@ dipresentasikan, buat setiap slide self-explanatory dan sertakan penjelasan sing
 source code yang ditampilkan. Hasil akhir yang saya perlukan adalah outline slide-per-slide lengkap,
 teks siap tempel, daftar aset per slide, serta saran layout.
 ```
-

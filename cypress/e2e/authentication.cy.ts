@@ -1,18 +1,19 @@
+import { loginPage } from '../pages/LoginPage';
+
 describe('GreenCart authentication', () => {
   it('menolak kredensial yang salah', () => {
-    cy.visit('/login');
-    cy.get('[data-testid="login-identity"]').type('customer');
-    cy.get('[data-testid="login-password"]').type('password-salah');
-    cy.contains('button', 'Masuk').click();
-    cy.get('[role="alert"]').should('contain.text', 'Email/username atau password salah.');
+    loginPage.login('customer', 'password-salah');
+    loginPage.assertServerError('Email/username atau password salah.');
   });
 
-  it('mengarahkan Admin ke dashboard', () => {
-    cy.visit('/login');
-    cy.get('[data-testid="login-identity"]').type('admin');
-    cy.get('[data-testid="login-password"]').type('Admin123!');
-    cy.contains('button', 'Masuk').click();
-    cy.url().should('include', '/admin');
-    cy.contains('h1', 'Dashboard GreenCart').should('be.visible');
+  it('menampilkan validasi ketika field login kosong', () => {
+    loginPage.submitEmpty();
+    loginPage.assertFieldErrors();
+  });
+
+  it('mengarahkan Customer ke katalog setelah login valid', () => {
+    loginPage.loginSuccessfully('customer', 'Customer123!');
+    cy.location('pathname').should('eq', '/products');
+    cy.contains(/\d+ produk ditemukan/).should('be.visible');
   });
 });
