@@ -1,6 +1,9 @@
 {
-  "buildCommand": "npm run build --workspace @greencart/web",
+  "buildCommand": "npm run db:migrate:deploy --workspace @greencart/api && npm run db:seed --workspace @greencart/api && npm run build --workspace @greencart/web",
   "outputDirectory": "apps/web/dist",
   "installCommand": "npm ci",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" },
+    { "source": "/:path*", "destination": "/index.html" }
+  ]
 }
