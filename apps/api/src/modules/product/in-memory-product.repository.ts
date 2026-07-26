@@ -9,6 +9,8 @@ export class InMemoryProductRepository implements ProductRepository {
     seed.forEach((product) => this.products.set(product.id, structuredClone(product)));
   }
 
+  async listCategories() { return [...new Map([...this.products.values()].map((product) => [product.categoryId, { id: product.categoryId, name: product.categoryName ?? 'Kategori', slug: product.categoryId }])).values()]; }
+
   async list(options: ProductListOptions) {
     let items = [...this.products.values()].filter((product) => product.isActive);
     if (options.search) {
@@ -29,6 +31,11 @@ export class InMemoryProductRepository implements ProductRepository {
 
   async findById(id: string) {
     const product = this.products.get(id);
+    return product ? structuredClone(product) : null;
+  }
+
+  async findBySlug(slug: string) {
+    const product = [...this.products.values()].find((item) => item.slug === slug && item.isActive);
     return product ? structuredClone(product) : null;
   }
 

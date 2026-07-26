@@ -8,9 +8,14 @@ export class ProductService {
   list(options: ProductListOptions) {
     return this.repository.list(options);
   }
+  listCategories() { return this.repository.listCategories(); }
 
   findById(id: string) {
     return this.repository.findById(id);
+  }
+
+  findBySlug(slug: string) {
+    return this.repository.findBySlug(slug);
   }
 
   async create(payload: CreateProductPayload) {

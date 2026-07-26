@@ -5,6 +5,8 @@ import type { ProductListOptions, ProductWriteInput } from './product.types.js';
 export class PrismaProductRepository implements ProductRepository {
   constructor(private readonly database: PrismaClient) {}
 
+  listCategories() { return this.database.category.findMany({ select: { id: true, name: true, slug: true }, orderBy: { name: 'asc' } }); }
+
   async list(options: ProductListOptions) {
     const where: Prisma.ProductWhereInput = {
       isActive: true,
@@ -33,6 +35,14 @@ export class PrismaProductRepository implements ProductRepository {
   async findById(id: string) {
     const record = await this.database.product.findUnique({
       where: { id },
+      include: { category: { select: { name: true } } },
+    });
+    return record ? toProduct(record) : null;
+  }
+
+  async findBySlug(slug: string) {
+    const record = await this.database.product.findFirst({
+      where: { slug, isActive: true },
       include: { category: { select: { name: true } } },
     });
     return record ? toProduct(record) : null;

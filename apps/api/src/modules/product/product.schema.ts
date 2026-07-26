@@ -29,6 +29,7 @@ export const updateProductSchema = createProductSchema
   });
 
 export const productIdSchema = z.uuid('ID produk tidak valid.');
+export const productSlugSchema = z.string().trim().min(1).max(180).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug produk tidak valid.');
 
 export const productListQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),

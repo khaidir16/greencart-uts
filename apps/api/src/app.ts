@@ -11,6 +11,12 @@ import { InMemoryProductRepository } from './modules/product/in-memory-product.r
 import type { ProductRepository } from './modules/product/product.repository.js';
 import { createProductRouter } from './modules/product/product.route.js';
 import { healthRouter } from './routes/health.route.js';
+import type { CartRepository } from './modules/cart/cart.repository.js';
+import { InMemoryCartRepository } from './modules/cart/in-memory-cart.repository.js';
+import { createCartRouter } from './modules/cart/cart.route.js';
+import type { OrderRepository } from './modules/order/order.repository.js';
+import { InMemoryOrderRepository } from './modules/order/in-memory-order.repository.js';
+import { createAdminOrderRouter, createOrderRouter } from './modules/order/order.route.js';
 
 const defaultUsers = [
   { id: '30000000-0000-4000-8000-000000000001', email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', role: 'ADMIN' as const, passwordHash: '$2b$10$qNGodx8jDC0HiPWBXb60OeliF5/JUeUFpTWmN55dVwtMmGXMhWxmu' },
@@ -22,11 +28,15 @@ export function createApp(options?: {
   authRepository?: AuthRepository;
   authSecret?: string;
   protectProductMutations?: boolean;
+  cartRepository?: CartRepository;
+  orderRepository?: OrderRepository;
 }) {
   const app = express();
   const productRepository = options?.productRepository ?? new InMemoryProductRepository();
   const authRepository = options?.authRepository ?? new InMemoryAuthRepository(defaultUsers);
   const authService = new AuthService(authRepository, options?.authSecret ?? env.authSecret);
+  const cartRepository = options?.cartRepository ?? new InMemoryCartRepository(productRepository);
+  const orderRepository = options?.orderRepository ?? new InMemoryOrderRepository(cartRepository, productRepository);
 
   app.disable('x-powered-by');
   app.use(helmet());
@@ -44,6 +54,9 @@ export function createApp(options?: {
     ? [requireAuth(authService), requireRole('ADMIN')]
     : [];
   app.use('/api/products', createProductRouter(productRepository, adminGuards));
+  app.use('/api/cart', requireAuth(authService), requireRole('CUSTOMER'), createCartRouter(cartRepository, productRepository));
+  app.use('/api/orders', requireAuth(authService), requireRole('CUSTOMER'), createOrderRouter(orderRepository));
+  app.use('/api/admin/orders', requireAuth(authService), requireRole('ADMIN'), createAdminOrderRouter(orderRepository));
 
   app.use((_request, response) => {
     response.status(404).json({

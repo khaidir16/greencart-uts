@@ -1,0 +1,29 @@
+import { useEffect, useState } from 'react';
+import { ArrowLeft, Droplets, Minus, Plus, ShoppingBag, SunMedium } from 'lucide-react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import type { Cart, Product } from '../features/products/product.types';
+import { useAuthStore } from '../features/auth/auth.store';
+import { ApiError, apiRequest } from '../services/api';
+
+export function ProductDetailPage() {
+  const { slug = '' } = useParams(); const location = useLocation(); const navigate = useNavigate();
+  const { token, user } = useAuthStore();
+  const [product, setProduct] = useState<Product | null>(null); const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true); const [message, setMessage] = useState(''); const [error, setError] = useState(''); const [adding, setAdding] = useState(false);
+  useEffect(() => { const controller = new AbortController(); setLoading(true); apiRequest<Product>(`/products/slug/${encodeURIComponent(slug)}`, { signal: controller.signal }).then(setProduct).catch((reason: unknown) => { if (!(reason instanceof DOMException && reason.name === 'AbortError')) setError(reason instanceof Error ? reason.message : 'Produk gagal dimuat.'); }).finally(() => { if (!controller.signal.aborted) setLoading(false); }); return () => controller.abort(); }, [slug]);
+  async function addToCart() {
+    if (!token || !user) { navigate('/login', { state: { from: location }, replace: false }); return; }
+    if (user.role !== 'CUSTOMER') { setError('Keranjang hanya tersedia untuk akun Customer.'); return; }
+    if (!product) return; setAdding(true); setError(''); setMessage('');
+    try { const cart = await apiRequest<Cart>('/cart/items', { method: 'POST', body: JSON.stringify({ productId: product.id, quantity }) }, token); setMessage(`${product.name} ditambahkan. Keranjang berisi ${cart.totalQuantity} item.`); }
+    catch (reason) { setError(reason instanceof ApiError ? reason.message : 'Produk gagal ditambahkan.'); }
+    finally { setAdding(false); }
+  }
+  if (loading) return <main className="container-shell py-16"><div className="skeleton h-[34rem] rounded-[2rem]" /></main>;
+  if (error && !product) return <main className="container-shell py-16"><div role="alert" className="panel p-10 text-center"><h1 className="font-display text-2xl font-semibold">Produk tidak dapat dibuka</h1><p className="mt-3 text-sm text-slate-600">{error}</p><Link to="/products" className="button-base button-secondary mt-6 px-5 py-3">Kembali ke katalog</Link></div></main>;
+  if (!product) return null;
+  return <main className="container-shell py-10 sm:py-16"><Link to="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-forest-800"><ArrowLeft size={17} /> Kembali ke katalog</Link><div className="mt-7 grid gap-8 lg:grid-cols-2"><div className="product-visual min-h-[28rem] rounded-[2rem]" style={{ '--product-accent': '#479c34' } as React.CSSProperties}>{product.imageUrl ? <img src={product.imageUrl} alt={product.name} className="h-full w-full object-cover" /> : <><div className="product-plant scale-150" /><div className="product-pot-mini scale-150" /></>}<span className="badge badge-green absolute left-6 top-6 z-10">{product.categoryName ?? 'GreenCart'}</span></div><section className="flex flex-col justify-center"><p className="section-kicker">{careLabel(product.careLevel)}</p><h1 className="font-display text-4xl font-semibold leading-tight text-forest-950 sm:text-5xl">{product.name}</h1><p className="mt-5 text-sm leading-7 text-slate-600">{product.description}</p><p className="mt-7 font-display text-3xl font-bold text-forest-900">{rupiah(product.price)}</p><div className="mt-7 grid gap-3 sm:grid-cols-2"><Info icon={<SunMedium />} label="Kebutuhan cahaya" value={product.lightRequirement} /><Info icon={<Droplets />} label="Penyiraman" value={product.wateringFrequency} /></div><div className="mt-8 flex flex-wrap items-center gap-3"><div className="flex h-12 items-center rounded-xl border border-sage-200 bg-white"><button aria-label="Kurangi jumlah" className="icon-button" onClick={() => setQuantity((value) => Math.max(1, value - 1))} disabled={quantity === 1}><Minus size={16} /></button><output aria-label="Jumlah produk" className="w-10 text-center font-bold">{quantity}</output><button aria-label="Tambah jumlah" className="icon-button" onClick={() => setQuantity((value) => Math.min(10, product.stock, value + 1))} disabled={quantity >= Math.min(10, product.stock)}><Plus size={16} /></button></div><button className="button-base button-primary h-12 flex-1 px-6" disabled={!product.stock || adding} onClick={addToCart}><ShoppingBag size={18} /> {adding ? 'Menambahkan…' : product.stock ? 'Tambah ke keranjang' : 'Stok habis'}</button></div><p className="mt-3 text-xs text-slate-500">Stok {product.stock} · Maksimal 10 item per produk</p>{message && <div role="status" className="mt-5 rounded-xl bg-sage-100 p-4 text-sm font-semibold text-forest-800">{message} <Link to="/cart" className="underline">Lihat keranjang</Link></div>}{error && product && <div role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">{error}</div>}</section></div></main>;
+}
+function Info({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) { return <div className="panel flex gap-3 p-4 text-forest-800"><span className="text-leaf-600">{icon}</span><div><p className="text-[.65rem] font-bold uppercase tracking-wider text-slate-500">{label}</p><p className="mt-1 text-sm font-semibold">{value}</p></div></div>; }
+function careLabel(level: Product['careLevel']) { return level === 'EASY' ? 'Perawatan mudah' : level === 'MEDIUM' ? 'Perawatan menengah' : 'Perawatan intensif'; }
+function rupiah(value: number) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value); }

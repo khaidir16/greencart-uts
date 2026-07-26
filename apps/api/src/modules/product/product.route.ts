@@ -5,6 +5,7 @@ import {
   createProductSchema,
   productIdSchema,
   productListQuerySchema,
+  productSlugSchema,
   updateProductSchema,
 } from './product.schema.js';
 import { ProductService } from './product.service.js';
@@ -26,6 +27,19 @@ export function createProductRouter(repository: ProductRepository, adminGuards: 
       });
     } catch (error) {
       sendError(error, response);
+    }
+  });
+
+  router.get('/categories/list', async (_request, response) => response.json({ success: true, message: 'Kategori berhasil diambil.', data: await service.listCategories() }));
+
+  router.get('/slug/:slug', async (request, response) => {
+    try {
+      const slug = productSlugSchema.parse(request.params.slug);
+      const product = await service.findBySlug(slug);
+      if (!product) return response.status(404).json({ success: false, message: 'Produk tidak ditemukan.' });
+      return response.status(200).json({ success: true, message: 'Detail produk berhasil diambil.', data: product });
+    } catch (error) {
+      return sendError(error, response);
     }
   });
 

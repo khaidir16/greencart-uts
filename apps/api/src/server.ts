@@ -3,12 +3,16 @@ import { prisma } from './config/database.js';
 import { env } from './config/env.js';
 import { PrismaProductRepository } from './modules/product/prisma-product.repository.js';
 import { PrismaAuthRepository } from './modules/auth/prisma-auth.repository.js';
+import { PrismaCartRepository } from './modules/cart/prisma-cart.repository.js';
+import { PrismaOrderRepository } from './modules/order/prisma-order.repository.js';
 
 const app = createApp({
   productRepository: new PrismaProductRepository(prisma),
   authRepository: new PrismaAuthRepository(prisma),
   authSecret: env.authSecret,
   protectProductMutations: true,
+  cartRepository: new PrismaCartRepository(prisma),
+  orderRepository: new PrismaOrderRepository(prisma),
 });
 
 const server = app.listen(env.port, () => {

@@ -33,3 +33,4 @@ export type ProductListOptions = {
 };
 
 export type ProductListResult = { items: Product[]; total: number };
+export type ProductCategory = { id: string; name: string; slug: string };
