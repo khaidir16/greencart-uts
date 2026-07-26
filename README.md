@@ -3,6 +3,13 @@
 GreenCart adalah aplikasi toko tanaman dan perlengkapan berkebun untuk proyek UTS Advanced
 Software Testing and Quality Assurance.
 
+## Live Demo
+
+- Website: [https://greencart-uts.vercel.app](https://greencart-uts.vercel.app)
+- API health: [https://greencart-uts.vercel.app/api/health](https://greencart-uts.vercel.app/api/health)
+- Swagger UI: [https://greencart-uts.vercel.app/api/docs](https://greencart-uts.vercel.app/api/docs)
+- Repository: [https://github.com/khaidir16/greencart-uts](https://github.com/khaidir16/greencart-uts)
+
 ## Anggota Kelompok
 
 | Nama               | NIM          | Pembagian Tugas                                                                           |
@@ -174,5 +181,8 @@ terminal terpisah sebelum Cypress headless, atau gunakan `npm run e2e:open` untu
 
 Blueprint Render, konfigurasi Vercel, environment production, dan checklist smoke test dijelaskan
 pada [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
+Status deployment terakhir dan panduan melanjutkan proyek tersedia pada
+[`docs/HANDOFF.md`](docs/HANDOFF.md).
 
 Konfigurasi environment tersedia pada file `.env.example` di masing-masing aplikasi.
