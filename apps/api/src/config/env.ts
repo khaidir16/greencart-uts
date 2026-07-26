@@ -14,4 +14,5 @@ export const env = {
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: readPort(process.env.PORT),
   webOrigin: process.env.WEB_ORIGIN ?? 'http://localhost:5173',
+  authSecret: process.env.AUTH_SECRET ?? 'development-only-greencart-secret-change-in-production',
 } as const;

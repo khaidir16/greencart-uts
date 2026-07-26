@@ -1,5 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient, CareLevel, UserRole } from '@prisma/client';
+import { hash } from 'bcryptjs';
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) throw new Error('DATABASE_URL wajib tersedia untuk menjalankan seed.');
@@ -41,8 +42,12 @@ async function main() {
     });
   }
 
-  await prisma.user.upsert({ where: { email: 'admin@greencart.test' }, update: { name: 'Admin GreenCart', role: UserRole.ADMIN }, create: { email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', passwordHash: 'DEMO_HASH_REPLACE_IN_AUTH_STAGE', role: UserRole.ADMIN } });
-  await prisma.user.upsert({ where: { email: 'customer@greencart.test' }, update: { name: 'Customer Demo', role: UserRole.CUSTOMER }, create: { email: 'customer@greencart.test', username: 'customer', name: 'Customer Demo', passwordHash: 'DEMO_HASH_REPLACE_IN_AUTH_STAGE', role: UserRole.CUSTOMER } });
+  const [adminPasswordHash, customerPasswordHash] = await Promise.all([
+    hash('Admin123!', 10),
+    hash('Customer123!', 10),
+  ]);
+  await prisma.user.upsert({ where: { email: 'admin@greencart.test' }, update: { name: 'Admin GreenCart', role: UserRole.ADMIN, passwordHash: adminPasswordHash }, create: { email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', passwordHash: adminPasswordHash, role: UserRole.ADMIN } });
+  await prisma.user.upsert({ where: { email: 'customer@greencart.test' }, update: { name: 'Customer Demo', role: UserRole.CUSTOMER, passwordHash: customerPasswordHash }, create: { email: 'customer@greencart.test', username: 'customer', name: 'Customer Demo', passwordHash: customerPasswordHash, role: UserRole.CUSTOMER } });
   console.log(`Seed selesai: ${products.length} produk, ${categories.length} kategori, dan 2 akun demo.`);
 }
 

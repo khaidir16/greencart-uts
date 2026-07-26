@@ -24,5 +24,6 @@
 | FR-08 | Perbarui produk | API-PROD-10–12 | API integration |
 | FR-09 | Hapus produk | API-PROD-13–14 | API integration |
 | FR-24 | REST response dan error | API-PROD-01–14 | API integration |
+| FR-02–FR-04 | Login dan hak akses | API-AUTH-01–08 | Authentication integration |
 
 Matrix akan diperluas ketika BDD, UI automation, dan API automation dibuat.

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, type RequestHandler } from 'express';
 import { ZodError } from 'zod';
 import { ProductDeleteConflictError, type ProductRepository } from './product.repository.js';
 import {
@@ -9,7 +9,7 @@ import {
 } from './product.schema.js';
 import { ProductService } from './product.service.js';
 
-export function createProductRouter(repository: ProductRepository) {
+export function createProductRouter(repository: ProductRepository, adminGuards: RequestHandler[] = []) {
   const router = Router();
   const service = new ProductService(repository);
 
@@ -40,7 +40,7 @@ export function createProductRouter(repository: ProductRepository) {
     }
   });
 
-  router.post('/', async (request, response) => {
+  router.post('/', ...adminGuards, async (request, response) => {
     try {
       const payload = createProductSchema.parse(request.body);
       const product = await service.create(payload);
@@ -50,7 +50,7 @@ export function createProductRouter(repository: ProductRepository) {
     }
   });
 
-  router.patch('/:id', async (request, response) => {
+  router.patch('/:id', ...adminGuards, async (request, response) => {
     try {
       const id = productIdSchema.parse(request.params.id);
       const payload = updateProductSchema.parse(request.body);
@@ -62,7 +62,7 @@ export function createProductRouter(repository: ProductRepository) {
     }
   });
 
-  router.delete('/:id', async (request, response) => {
+  router.delete('/:id', ...adminGuards, async (request, response) => {
     try {
       const id = productIdSchema.parse(request.params.id);
       const deleted = await service.delete(id);

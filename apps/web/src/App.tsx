@@ -1,6 +1,7 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AdminLayout } from './components/layout/AdminLayout';
 import { PublicLayout } from './components/layout/PublicLayout';
+import { RequireAuth } from './components/auth/RequireAuth';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -15,66 +16,66 @@ export function App() {
         <Route
           path="products"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Katalog botani"
               title="Temukan tanaman yang cocok dengan ruangmu"
               description="Pencarian, filter, pengurutan, tampilan grid, dan katalog interaktif akan hadir di tahap katalog."
-            />
+            /></RequireAuth>
           }
         />
         <Route
           path="products/:slug"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Detail produk"
               title="Kenali setiap tanaman sebelum membawanya pulang"
               description="Galeri, informasi perawatan, stok, harga, kuantitas, dan rekomendasi produk akan tersedia di sini."
-            />
+            /></RequireAuth>
           }
         />
         <Route
           path="cart"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Keranjang"
               title="Pilihan hijaumu, tersusun rapi"
               description="Kontrol kuantitas, validasi stok, subtotal, penghapusan item, dan ringkasan belanja akan dibangun pada tahap fitur keranjang."
-            />
+            /></RequireAuth>
           }
         />
         <Route
           path="checkout"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Checkout bertahap"
               title="Satu langkah lagi menuju ruang yang lebih hidup"
               description="Data penerima, alamat, tinjauan pesanan, validasi, dan konfirmasi akan menggunakan stepper yang jelas."
-            />
+            /></RequireAuth>
           }
         />
         <Route
           path="profile/orders"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Riwayat pesanan"
               title="Pantau perjalanan tanamanmu"
               description="Daftar pesanan dan status terkini akan ditampilkan dengan pencarian serta filter status."
-            />
+            /></RequireAuth>
           }
         />
         <Route
           path="orders/:orderNumber"
           element={
-            <PlaceholderPage
+            <RequireAuth><PlaceholderPage
               eyebrow="Detail pesanan"
               title="Status pesanan dalam satu timeline"
               description="Timeline DRAFT, CONFIRMED, COMPLETED, atau CANCELLED akan memperjelas state transition aplikasi."
-            />
+            /></RequireAuth>
           }
         />
       </Route>
 
-      <Route path="admin" element={<AdminLayout />}>
+      <Route path="admin" element={<RequireAuth role="ADMIN"><AdminLayout /></RequireAuth>}>
         <Route index element={<AdminDashboardPlaceholder />} />
         <Route
           path="products"
@@ -98,7 +99,7 @@ export function App() {
         />
       </Route>
 
-      <Route path="403" element={<Navigate to="/" replace />} />
+      <Route path="403" element={<PlaceholderPage eyebrow="Akses ditolak" title="Area ini membutuhkan izin berbeda" description="Akun yang digunakan tidak memiliki hak akses ke halaman tersebut." />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

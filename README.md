@@ -10,6 +10,13 @@ Software Testing and Quality Assurance.
 - `features` — spesifikasi BDD Gherkin dan step definition.
 - `docs` — diagram, bukti eksekusi, test case, dan defect.
 
+## Akun demo development
+
+- Admin: `admin` / `Admin123!`
+- Customer: `customer` / `Customer123!`
+
+Credential tersebut hanya untuk pengujian lokal/demo UTS.
+
 ## Menjalankan proyek
 
 ```bash

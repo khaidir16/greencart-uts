@@ -59,6 +59,7 @@
   .field-shell { display: flex; height: 3.25rem; align-items: center; gap: .75rem; padding-inline: 1rem; border: 1px solid #d5e3d1; border-radius: .9rem; color: #718079; background: #fafcf9; transition: border .2s, box-shadow .2s; }
   .field-shell:focus-within { border-color: #65bd46; box-shadow: 0 0 0 4px rgb(101 189 70 / 12%); }
   .field-shell input { width: 100%; min-width: 0; border: 0; outline: 0; color: #12372a; background: transparent; font-size: .85rem; }
+  .field-error { color: #c62828; font-size: .7rem; font-weight: 650; }
   .footer-title { font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
   .footer-link { width: fit-content; transition: color .2s; }
   .footer-link:hover { color: #83d35b; }
