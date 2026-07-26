@@ -14,5 +14,6 @@ cypress/videos/
 cypress/downloads/
 reports/
 test-results/
+*.tsbuildinfo
 apps/api/prisma/*.db
 apps/api/prisma/*.db-journal
