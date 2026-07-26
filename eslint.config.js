@@ -20,4 +20,8 @@ export default tseslint.config(
       '@typescript-eslint/consistent-type-imports': 'error',
     },
   },
+  {
+    files: ['cypress/**/*.ts'],
+    languageOptions: { globals: { ...globals.browser, ...globals.node, ...globals.mocha, cy: 'readonly', Cypress: 'readonly' } },
+  },
 );

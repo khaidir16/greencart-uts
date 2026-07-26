@@ -28,6 +28,16 @@ npm run dev
 - API: `http://localhost:3000`
 - Health check: `http://localhost:3000/api/health`
 
+## Database lokal
+
+GreenCart menggunakan PostgreSQL. Salin `apps/api/.env.example` menjadi `apps/api/.env`, isi
+`DATABASE_URL`, kemudian jalankan:
+
+```bash
+npm run db:migrate --workspace @greencart/api -- --name init
+npm run db:seed --workspace @greencart/api
+```
+
 ## Pemeriksaan dasar
 
 ```bash
@@ -35,6 +45,11 @@ npm run typecheck
 npm run lint
 npm run build
 npm test
+npm run bdd
+npm run e2e
 ```
+
+`npm run e2e` memerlukan Web pada port 5173 dan API pada port 3000. Jalankan `npm run dev` pada
+terminal terpisah sebelum Cypress headless, atau gunakan `npm run e2e:open` untuk mode interaktif.
 
 Konfigurasi environment tersedia pada file `.env.example` di masing-masing aplikasi.
