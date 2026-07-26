@@ -13,11 +13,11 @@ Setelah membuat Blueprint dari repository GitHub:
 1. Isi `WEB_ORIGIN` pada API dengan URL static site tanpa trailing slash.
 2. Isi `VITE_API_BASE_URL` pada Web dengan `https://<api-host>/api`.
 3. Deploy ulang Web setelah URL API tersedia.
-4. Jalankan seed satu kali melalui Render Shell:
-   `npm run db:seed --workspace @greencart/api`.
-5. Periksa `/api/health`, `/api/docs`, login demo, dan checkout.
+4. Periksa `/api/health`, `/api/docs`, login demo, dan checkout.
 
-Migration dijalankan otomatis melalui `prisma migrate deploy` sebelum API dirilis.
+Karena paket Free tidak menyediakan pre-deploy command, migration dan seed idempotent dijalankan
+otomatis oleh start command sebelum API aktif. Seed menggunakan `upsert`, sehingga aman ketika
+service mengalami restart.
 
 ## Opsi B — Render API + Vercel Web
 
