@@ -13,18 +13,20 @@ function supportsWebGL() {
 
 export function BotanicalExperience() {
   const [ready, setReady] = useState(false);
+  const [loadScene, setLoadScene] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     setReducedMotion(media.matches);
     setReady(supportsWebGL());
+    const loadTimer = window.setTimeout(() => setLoadScene(true), 300);
     const updateMotion = () => setReducedMotion(media.matches);
     media.addEventListener('change', updateMotion);
-    return () => media.removeEventListener('change', updateMotion);
+    return () => { window.clearTimeout(loadTimer); media.removeEventListener('change', updateMotion); };
   }, []);
 
-  if (!ready) return <BotanicalFallback />;
+  if (!ready || !loadScene) return <BotanicalFallback />;
 
   return (
     <div className="h-full w-full" data-testid="botanical-3d-scene">

@@ -4,6 +4,10 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    // PlantScene adalah chunk opsional/lazy; Three.js sengaja tidak masuk initial bundle.
+    chunkSizeWarningLimit: 1000,
+  },
   server: {
     port: 5173,
   },
