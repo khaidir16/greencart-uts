@@ -17,3 +17,6 @@ test-results/
 *.tsbuildinfo
 apps/api/prisma/*.db
 apps/api/prisma/*.db-journal
+
+.vercel
+.env*
