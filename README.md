@@ -27,6 +27,8 @@ npm run dev
 - Web: `http://localhost:5173`
 - API: `http://localhost:3000`
 - Health check: `http://localhost:3000/api/health`
+- Swagger UI: `http://localhost:3000/api/docs`
+- OpenAPI JSON: `http://localhost:3000/api/docs/openapi.json`
 
 ## Database lokal
 

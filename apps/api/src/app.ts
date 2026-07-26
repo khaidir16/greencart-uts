@@ -17,6 +17,8 @@ import { createCartRouter } from './modules/cart/cart.route.js';
 import type { OrderRepository } from './modules/order/order.repository.js';
 import { InMemoryOrderRepository } from './modules/order/in-memory-order.repository.js';
 import { createAdminOrderRouter, createOrderRouter } from './modules/order/order.route.js';
+import swaggerUi from 'swagger-ui-express';
+import { openApiDocument } from './docs/openapi.js';
 
 const defaultUsers = [
   { id: '30000000-0000-4000-8000-000000000001', email: 'admin@greencart.test', username: 'admin', name: 'Admin GreenCart', role: 'ADMIN' as const, passwordHash: '$2b$10$qNGodx8jDC0HiPWBXb60OeliF5/JUeUFpTWmN55dVwtMmGXMhWxmu' },
@@ -49,6 +51,8 @@ export function createApp(options?: {
   app.use(express.json({ limit: '1mb' }));
 
   app.use('/api/health', healthRouter);
+  app.get('/api/docs/openapi.json', (_request, response) => response.json(openApiDocument));
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument, { customSiteTitle: 'GreenCart API Docs' }));
   app.use('/api/auth', createAuthRouter(authService));
   const adminGuards = options?.protectProductMutations
     ? [requireAuth(authService), requireRole('ADMIN')]
