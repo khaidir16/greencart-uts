@@ -1,5 +1,9 @@
-import { app } from './app.js';
+import { createApp } from './app.js';
+import { prisma } from './config/database.js';
 import { env } from './config/env.js';
+import { PrismaProductRepository } from './modules/product/prisma-product.repository.js';
+
+const app = createApp({ productRepository: new PrismaProductRepository(prisma) });
 
 const server = app.listen(env.port, () => {
   console.log(`GreenCart API berjalan di http://localhost:${env.port}`);

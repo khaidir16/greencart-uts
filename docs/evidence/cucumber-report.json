@@ -12,7 +12,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 661699
+              "duration": 600400
             },
             "arguments": [],
             "keyword": "Given ",
@@ -25,7 +25,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 166200
+              "duration": 163799
             },
             "arguments": [],
             "keyword": "When ",
@@ -38,7 +38,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 187000
+              "duration": 169300
             },
             "arguments": [],
             "keyword": "Then ",
@@ -51,7 +51,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 204100
+              "duration": 304399
             },
             "arguments": [],
             "keyword": "And ",
@@ -75,7 +75,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 76999
+              "duration": 127099
             },
             "arguments": [],
             "keyword": "Given ",
@@ -88,7 +88,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 204399
+              "duration": 210899
             },
             "arguments": [],
             "keyword": "When ",
@@ -101,7 +101,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 290999
+              "duration": 248100
             },
             "arguments": [],
             "keyword": "Then ",
@@ -125,7 +125,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 90500
+              "duration": 93999
             },
             "arguments": [],
             "keyword": "Given ",
@@ -138,7 +138,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 225500
+              "duration": 191699
             },
             "arguments": [],
             "keyword": "When ",
@@ -151,7 +151,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 101900
+              "duration": 105400
             },
             "arguments": [],
             "keyword": "Then ",
@@ -175,7 +175,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 58099
+              "duration": 61299
             },
             "arguments": [],
             "keyword": "Given ",
@@ -188,7 +188,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 38900
+              "duration": 41200
             },
             "arguments": [],
             "keyword": "When ",
@@ -201,7 +201,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 107799
+              "duration": 110299
             },
             "arguments": [],
             "keyword": "Then ",
@@ -225,7 +225,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 35500
+              "duration": 46799
             },
             "arguments": [],
             "keyword": "Given ",
@@ -238,7 +238,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 35900
+              "duration": 38999
             },
             "arguments": [],
             "keyword": "When ",
@@ -251,7 +251,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 45399
+              "duration": 47699
             },
             "arguments": [],
             "keyword": "Then ",
@@ -275,7 +275,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 41499
+              "duration": 41799
             },
             "arguments": [],
             "keyword": "Given ",
@@ -288,7 +288,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 39800
+              "duration": 40099
             },
             "arguments": [],
             "keyword": "When ",
@@ -301,7 +301,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 49500
+              "duration": 51600
             },
             "arguments": [],
             "keyword": "Then ",
@@ -325,7 +325,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 26600
+              "duration": 28099
             },
             "arguments": [],
             "keyword": "Given ",
@@ -338,7 +338,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 29300
+              "duration": 30199
             },
             "arguments": [],
             "keyword": "When ",
@@ -351,7 +351,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 42799
+              "duration": 54700
             },
             "arguments": [],
             "keyword": "Then ",
@@ -375,7 +375,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 25099
+              "duration": 27400
             },
             "arguments": [],
             "keyword": "Given ",
@@ -388,7 +388,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 23799
+              "duration": 25200
             },
             "arguments": [],
             "keyword": "Given ",
@@ -401,7 +401,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 27100
+              "duration": 28300
             },
             "arguments": [],
             "keyword": "When ",
@@ -414,7 +414,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 35200
+              "duration": 36100
             },
             "arguments": [],
             "keyword": "Then ",
@@ -449,7 +449,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 116499
+              "duration": 116100
             },
             "arguments": [],
             "keyword": "Given ",
@@ -462,7 +462,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 127500
+              "duration": 121499
             },
             "arguments": [],
             "keyword": "When ",
@@ -475,7 +475,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 66100
+              "duration": 65500
             },
             "arguments": [],
             "keyword": "Then ",
@@ -499,7 +499,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 36500
+              "duration": 41399
             },
             "arguments": [],
             "keyword": "Given ",
@@ -512,7 +512,107 @@
           {
             "result": {
               "status": "passed",
-              "duration": 36400
+              "duration": 38300
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 29400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"CANCELLED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 15,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31900
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 41100
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "the administrator changes the status to \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:76"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 63800
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the order status transition should succeed to \"COMPLETED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:84"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "order-status-transition;allow-valid-order-status-transitions",
+        "keyword": "Scenario Outline",
+        "line": 16,
+        "name": "Allow valid order status transitions",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35399
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "an order currently has status \"CONFIRMED\"",
+            "match": {
+              "location": "features\\step-definitions\\greencart.steps.ts:69"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35700
             },
             "arguments": [],
             "keyword": "When ",
@@ -541,106 +641,6 @@
       },
       {
         "description": "",
-        "id": "order-status-transition;allow-valid-order-status-transitions",
-        "keyword": "Scenario Outline",
-        "line": 15,
-        "name": "Allow valid order status transitions",
-        "steps": [
-          {
-            "result": {
-              "status": "passed",
-              "duration": 31500
-            },
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 7,
-            "name": "an order currently has status \"CONFIRMED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:69"
-            }
-          },
-          {
-            "result": {
-              "status": "passed",
-              "duration": 40799
-            },
-            "arguments": [],
-            "keyword": "When ",
-            "line": 8,
-            "name": "the administrator changes the status to \"COMPLETED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:76"
-            }
-          },
-          {
-            "result": {
-              "status": "passed",
-              "duration": 57700
-            },
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 9,
-            "name": "the order status transition should succeed to \"COMPLETED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:84"
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "order-status-transition;allow-valid-order-status-transitions",
-        "keyword": "Scenario Outline",
-        "line": 16,
-        "name": "Allow valid order status transitions",
-        "steps": [
-          {
-            "result": {
-              "status": "passed",
-              "duration": 33399
-            },
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 7,
-            "name": "an order currently has status \"CONFIRMED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:69"
-            }
-          },
-          {
-            "result": {
-              "status": "passed",
-              "duration": 35200
-            },
-            "arguments": [],
-            "keyword": "When ",
-            "line": 8,
-            "name": "the administrator changes the status to \"CANCELLED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:76"
-            }
-          },
-          {
-            "result": {
-              "status": "passed",
-              "duration": 28699
-            },
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 9,
-            "name": "the order status transition should succeed to \"CANCELLED\"",
-            "match": {
-              "location": "features\\step-definitions\\greencart.steps.ts:84"
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
         "id": "order-status-transition;reject-cancellation-of-a-completed-order",
         "keyword": "Scenario",
         "line": 18,
@@ -649,7 +649,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 33699
+              "duration": 35300
             },
             "arguments": [],
             "keyword": "Given ",
@@ -662,7 +662,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 57799
+              "duration": 47000
             },
             "arguments": [],
             "keyword": "When ",
@@ -675,7 +675,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 97800
+              "duration": 81500
             },
             "arguments": [],
             "keyword": "Then ",
@@ -688,7 +688,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 184100
+              "duration": 61800
             },
             "arguments": [],
             "keyword": "And ",
@@ -712,7 +712,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 87300
+              "duration": 32199
             },
             "arguments": [],
             "keyword": "Given ",
@@ -725,7 +725,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 66599
+              "duration": 36000
             },
             "arguments": [],
             "keyword": "When ",
@@ -738,7 +738,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 46400
+              "duration": 29999
             },
             "arguments": [],
             "keyword": "Then ",
@@ -751,7 +751,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 32400
+              "duration": 33699
             },
             "arguments": [],
             "keyword": "And ",
@@ -775,7 +775,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 32899
+              "duration": 37199
             },
             "arguments": [],
             "keyword": "Given ",
@@ -788,7 +788,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 35499
+              "duration": 36199
             },
             "arguments": [],
             "keyword": "When ",
@@ -801,7 +801,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 30500
+              "duration": 40200
             },
             "arguments": [],
             "keyword": "Then ",
@@ -814,7 +814,7 @@
           {
             "result": {
               "status": "passed",
-              "duration": 28999
+              "duration": 28700
             },
             "arguments": [],
             "keyword": "And ",

@@ -19,5 +19,10 @@
 | FR-16 | Stok saat checkout | BDD-CART: exceeding available stock | BDD negatif |
 | FR-20–FR-22 | Transisi status valid | BDD-ORDER: valid transitions outline | BDD Scenario Outline |
 | FR-23 | Status terminal dan unchanged | BDD-ORDER: tiga skenario penolakan | BDD negatif/status |
+| FR-05–FR-06 | Daftar/detail/search produk | API-PROD-01–05 | API integration |
+| FR-07 | Tambah produk | API-PROD-06–09 | API integration |
+| FR-08 | Perbarui produk | API-PROD-10–12 | API integration |
+| FR-09 | Hapus produk | API-PROD-13–14 | API integration |
+| FR-24 | REST response dan error | API-PROD-01–14 | API integration |
 
 Matrix akan diperluas ketika BDD, UI automation, dan API automation dibuat.
